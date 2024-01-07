@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <!-- Two text fields - Name and Email -->
+        <input id="name" type="text" placeholder="Name" value=""><br><br>
+        <input id="email" type="email" placeholder="Email" value=""><br><br>
+        <!-- Two radio buttons for Gender - Male and Female -->
+        <input id="female" type="radio" name="Gender" value="female"> Female 
+        <input id="male" type="radio"  name="Gender" value="male"> Male <br><br>
+        <!-- Submit button -->
+        <input type="submit" value="Submit"> <br><br>
+    </form>
+
+    <!-- Display form data -->
+    <div id="display"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('input[type="submit"]').on('click', function(event) {
+                event.preventDefault();
+
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var gender = $('input[name="Gender"]:checked');
+
+                if (gender.length > 0) {
+                    gender = gender.val();
+                } else {
+                    gender = "Not specified";
+                }
+
+                var displayText = name + "<br>" + email + "<br>" + gender;
+                $('#display').html(displayText).hide().fadeIn(); // Fade in the form data
+
+
+                $('#display').css({
+                    'font-family': 'Arial',
+                    'border': '1px solid #000',
+                    'background-color': '#F4FFAD',
+                    'padding' : '15px'
+                });
+            });
+
+            $('#display').on('mouseover', function() {
+                $(this).slideUp();
+            });
+
+            $('#display').on('mouseout', function() {
+                $(this).slideDown();
+            });
+        });
+    </script>
+</body>
+
+</html>
